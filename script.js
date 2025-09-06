@@ -15,8 +15,11 @@ function hover(){
     let div_element = document.querySelectorAll(".colour_change");
     div_element.forEach(div => {
         div.addEventListener("mouseover",() => {
-            div.style.backgroundColor = "green";
-        });
+            let r = Math.floor(Math.random()*255 - 1);
+            let g = Math.floor(Math.random()*255 - 1);
+            let b = Math.floor(Math.random()*255 - 1);
+            div.style.backgroundColor = `rgb(${r},${g},${b})`;
+        },{once: true});
     });
 }
 function input(){
