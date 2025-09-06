@@ -1,9 +1,13 @@
 .top{
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
 }
 .workspace{
+    display: flex;
     margin: auto;
-    margin-top: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
     height: 500px;
     width: 500px;
     border: 2px solid black;
