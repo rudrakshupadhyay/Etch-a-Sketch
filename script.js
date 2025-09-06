@@ -7,8 +7,17 @@ function createbox(number_square){
         box.style.height = boxSize + "px";
         box.style.border = "1px solid gray";
         box.style.boxSizing = "border-box";
+        box.classList.add("colour_change");
         workspace.appendChild(box);
     }
+}
+function hover(){
+    let div_element = document.querySelectorAll(".colour_change");
+    div_element.forEach(div => {
+        div.addEventListener("mouseover",() => {
+            div.style.backgroundColor = "green";
+        });
+    });
 }
 function input(){
     let number_square = prompt("Enter n in n*n grid maximum value 100");
@@ -31,6 +40,8 @@ reset.addEventListener("click",() => {
     let newNumber = input();
     content.textContent  = `Squares per side: ${newNumber}`;
     createbox(newNumber);
-})
+    hover();
+});
+hover();
 
 
