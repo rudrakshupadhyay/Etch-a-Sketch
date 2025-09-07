@@ -5,19 +5,18 @@ function createbox(number_square){
         let box = document.createElement("div");
         box.style.width = boxSize + "px";
         box.style.height = boxSize + "px";
-        box.style.border = "1px solid gray";
-        box.style.boxSizing = "border-box";
         box.classList.add("colour_change");
         workspace.appendChild(box);
     }
+    hover();
 }
 function hover(){
     let div_element = document.querySelectorAll(".colour_change");
     div_element.forEach(div => {
         div.addEventListener("mouseover",() => {
-            let r = Math.floor(Math.random()*255 - 1);
-            let g = Math.floor(Math.random()*255 - 1);
-            let b = Math.floor(Math.random()*255 - 1);
+            let r = Math.floor(Math.random()*255);
+            let g = Math.floor(Math.random()*255);
+            let b = Math.floor(Math.random()*255);
             div.style.backgroundColor = `rgb(${r},${g},${b})`;
         },{once: true});
     });
@@ -38,13 +37,20 @@ heading.appendChild(content);
 let workspace = document.querySelector(".workspace");
 createbox(number_square);
 
-let reset = document.querySelector(".setSquare");
-reset.addEventListener("click",() => {
+let setSquare = document.querySelector(".setSquare");
+setSquare.addEventListener("click",() => {
     let newNumber = input();
     content.textContent  = `Squares per side: ${newNumber}`;
     createbox(newNumber);
+});
+let reset = document.querySelector(".reset");
+reset.addEventListener("click",() => {
+    let smallBox = document.querySelectorAll(".colour_change");
+    smallBox.forEach(div => {
+        div.style.backgroundColor = "";
+    });
     hover();
 });
-hover();
+
 
 
