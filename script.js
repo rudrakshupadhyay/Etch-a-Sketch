@@ -23,7 +23,8 @@ function hover(){
 }
 function input(){
     let number_square = prompt("Enter n in n*n grid maximum value 100");
-    if (number_square === null || number_square.trim() === "" || number_square > 100) {
+    number_square = parseInt(number_square);
+    if (isNaN(number_square) || number_square <= 0 || number_square > 100) {
         number_square = Math.floor(Math.random()*100);
     }
     return number_square;
