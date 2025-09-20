@@ -14,11 +14,23 @@ function hover(){
     let div_element = document.querySelectorAll(".colour_change");
     div_element.forEach(div => {
         div.addEventListener("mouseover",() => {
-            let r = Math.floor(Math.random()*255);
-            let g = Math.floor(Math.random()*255);
-            let b = Math.floor(Math.random()*255);
-            div.style.backgroundColor = `rgb(${r},${g},${b})`;
-        },{once: true});
+            if (!div.dataset.initialized) {
+                let r = Math.floor(Math.random() * 255);
+                let g = Math.floor(Math.random() * 255);
+                let b = Math.floor(Math.random() * 255);
+                div.style.backgroundColor = `rgb(${r},${g},${b})`;
+                div.style.opacity = "0.2";
+                div.dataset.initialized = true; // mark as initialized
+            }
+
+            // Increase opacity on every hover
+            let currOpacity = parseFloat(div.style.opacity) || 0.2; // fallback if empty
+            if (currOpacity < 1) {
+                currOpacity += 0.1;
+                if (currOpacity > 1) currOpacity = 1;
+                div.style.opacity = currOpacity;
+            }
+        })
     });
 }
 function input(){
@@ -49,6 +61,8 @@ reset.addEventListener("click",() => {
     let smallBox = document.querySelectorAll(".colour_change");
     smallBox.forEach(div => {
         div.style.backgroundColor = "";
+        div.style.opacity = "";
+        delete div.dataset.initialized;
     });
     hover();
 });
